@@ -24,6 +24,7 @@ tracing-log = "0.2.0"
 secrecy = { version = "0.10.3", features = ["serde"] }
 tracing-actix-web = "0.7.22"
 unicode-segmentation = "1.13.3"
+validator = "0.21.0"
 
 # Using table-like toml syntax to avoid a super-long line!
 [dependencies.sqlx]

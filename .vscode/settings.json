@@ -3,6 +3,5 @@
     "editor.defaultFormatter": "rust-lang.rust-analyzer",
     "editor.formatOnSave": true,
     "editor.formatOnSaveMode": "file"
-  },
-  "rust-analyzer.checkOnSave": false
+  }
 }

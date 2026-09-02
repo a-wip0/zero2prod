@@ -22,7 +22,7 @@ if ! [ -x "$(command -v yq)" ]; then
   exit 1
 fi
 
-CONFIG_FILE="configuration.yaml"
+CONFIG_FILE="configuration/base.yaml"
 
 DB_HOST=$(yq -r '.database.host' "$CONFIG_FILE")
 DB_PORT=$(yq -r '.database.port' "$CONFIG_FILE")

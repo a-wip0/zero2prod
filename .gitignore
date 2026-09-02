@@ -3,3 +3,5 @@ NOTE.md
 .env
 configuration.yaml
 .idea
+.vscode
+configuration

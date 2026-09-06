@@ -1,4 +1,4 @@
-use sqlx::postgres::PgPool;
+use sqlx::postgres::PgPoolOptions;
 use std::net::TcpListener;
 use zero2prod::configuration::get_configuration;
 use zero2prod::email_client::EmailClient;
@@ -12,9 +12,7 @@ async fn main() -> Result<(), std::io::Error> {
 
     let configuration = get_configuration().expect("Failed to read configuration.");
 
-    let connection_pool = PgPool::connect(&configuration.database.connection_string())
-        .await
-        .expect("Failed to connect to Postgres.");
+    let connection_pool = PgPoolOptions::new().connect_lazy_with(configuration.database.with_db());
 
     // Build an `EmailClient` using `configuration`
     let sender_email = configuration

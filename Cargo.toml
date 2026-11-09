@@ -26,6 +26,8 @@ tracing-actix-web = "0.7.22"
 unicode-segmentation = "1.13.3"
 validator = "0.21.0"
 rand = { version = "0.10.3", features = ["std_rng"] }
+thiserror = "2.0.21"
+anyhow = "1.0.104"
 
 # Using table-like toml syntax to avoid a super-long line!
 [dependencies.sqlx]

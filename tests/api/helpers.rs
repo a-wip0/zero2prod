@@ -57,7 +57,7 @@ pub async fn spawn_app() -> TestApp {
         .await
         .expect("Failed to build application.");
     let application_port = application.port();
-    let _ = tokio::spawn(application.run_until_stopped());
+    drop(tokio::spawn(application.run_until_stopped()));
 
     TestApp {
         address: format!("http://127.0.0.1:{}", application_port),
@@ -98,7 +98,7 @@ pub struct ConfirmationLinks {
 impl TestApp {
     pub async fn post_subscriptions(&self, body: String) -> reqwest::Response {
         reqwest::Client::new()
-            .post(&format!("{}/subscriptions", &self.address))
+            .post(format!("{}/subscriptions", self.address))
             .header("Content-Type", "application/x-www-form-urlencoded")
             .body(body)
             .send()
@@ -123,8 +123,8 @@ impl TestApp {
             confirmation_link
         };
 
-        let html = get_link(&body["html"].as_str().unwrap());
-        let plain_text = get_link(&body["text"].as_str().unwrap());
+        let html = get_link(body["html"].as_str().unwrap());
+        let plain_text = get_link(body["text"].as_str().unwrap());
         ConfirmationLinks { html, plain_text }
     }
 }
